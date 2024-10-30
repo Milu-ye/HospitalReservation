@@ -1,0 +1,5 @@
+/dist/*
+/html/*
+/node_modules/**
+**/*.sass
+
