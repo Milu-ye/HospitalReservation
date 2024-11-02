@@ -21,6 +21,8 @@
     display: flex;
     background-color: #f0f2f5;
     justify-content: center;
+    position: absolute;
+    bottom: 0;
 
     .content {
         width: 1200px;

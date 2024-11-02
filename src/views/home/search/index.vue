@@ -15,9 +15,9 @@ import { ref } from 'vue';
 const keywords = ref<string>('')
 const router = useRouter()
 const fetchData = async (keywords: string, cb: any) => {
-    console.log(1)
+
     const { data } = await reqHospitalInfo(keywords)
-    console.log(data)
+
     cb(data.map((val: Hospital) => {
         return {
             value: val.hosname,
@@ -28,7 +28,10 @@ const fetchData = async (keywords: string, cb: any) => {
 }
 const goDetail = (val: any) => {
     router.push({
-        path: '/hospital'
+        path: '/hospital',
+        query: {
+            hoscode: val.hoscode
+        }
     })
 }
 </script>

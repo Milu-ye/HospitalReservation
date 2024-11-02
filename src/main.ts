@@ -5,12 +5,13 @@ import { createPinia } from 'pinia'
 import HospitalTop from '@/components/hospital_top/index.vue'
 import HospitalBottom from '@/components/hostipal_buttom/index.vue'
 import ElementPlus from 'element-plus'
+import pinia from '@/store'
 import App from './App.vue'
 import router from './router'
 const app = createApp(App)
 app.component('HospitalTop', HospitalTop)
 app.component('HospitalBottom', HospitalBottom)
-app.use(createPinia())
+app.use(pinia)
 app.use(router)
 app.use(ElementPlus, {
   locale: zhCn,
