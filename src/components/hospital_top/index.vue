@@ -7,7 +7,23 @@
             </div>
             <div class="right">
                 <p class="help">帮助中心</p>
-                <p class="login">登录/注册</p>
+                <p v-if="!userStore.userInfo.name" class="login" @click="login">登录/注册</p>
+                <el-dropdown v-else>
+                    <span class="el-dropdown-link">
+                        {{ userStore.userInfo?.name }}
+                        <el-icon class="el-icon--right">
+                            <arrow-down />
+                        </el-icon>
+                    </span>
+                    <template #dropdown>
+                        <el-dropdown-menu>
+                            <el-dropdown-item>实名认证</el-dropdown-item>
+                            <el-dropdown-item>挂号订单</el-dropdown-item>
+                            <el-dropdown-item>就诊人管理</el-dropdown-item>
+                            <el-dropdown-item @click="logout">退出登录</el-dropdown-item>
+                        </el-dropdown-menu>
+                    </template>
+                </el-dropdown>
             </div>
         </div>
     </div>
@@ -15,16 +31,38 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
+import useUserStore from '@/store/modules/user';
+import { ArrowDown } from '@element-plus/icons-vue'
+const userStore = useUserStore()
 const router = useRouter()
 const goHome = () => {
     router.push({
         path: '/home'
     })
 }
-
+const login = () => {
+    userStore.visiable = true
+}
+const logout = () => {
+    userStore.logout()
+    router.push({
+        path: '/home'
+    })
+}
 </script>
 
 <style style="less" scoped>
+.el-dropdown {
+    span {
+        cursor: pointer;
+
+        &:hover {
+            color: skyblue;
+        }
+    }
+
+}
+
 .top {
     width: 100%;
     height: 70px;
@@ -65,8 +103,24 @@ const goHome = () => {
         font-size: 14px;
         color: #939191;
 
+
+        p {
+            cursor: pointer;
+
+            &:hover {
+                color: skyblue
+            }
+        }
+
         .help {
             margin-right: 10px;
+            cursor: pointer;
+
+            &:hover {
+                color: skyblue
+            }
+
+            ;
         }
     }
 }

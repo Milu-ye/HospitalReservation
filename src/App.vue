@@ -7,6 +7,7 @@
       </router-view>
     </div>
     <HospitalBottom></HospitalBottom>
+    <Login></Login>
   </div>
 </template>
 <script setup lang="ts">

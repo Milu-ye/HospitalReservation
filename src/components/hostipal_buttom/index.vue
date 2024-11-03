@@ -13,7 +13,7 @@
 
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .bottom {
     width: 100%;
     height: 50px;
@@ -22,7 +22,6 @@
     background-color: #f0f2f5;
     justify-content: center;
     position: absolute;
-    bottom: 0;
 
     .content {
         width: 1200px;

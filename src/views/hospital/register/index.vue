@@ -41,12 +41,45 @@
                 </div>
             </div>
         </div>
+        <div class="departmentContaint">
+            <div class="leftNav">
+                <ul>
+                    <li @click="changeIndex(index)" :class="{ active: currentIndex == index }"
+                        v-for="(department, index) in detail.departmentArr" :key="department?.depcode">{{
+                            department.depname }}
+                    </li>
+                </ul>
+            </div>
+            <div class="department">
+                <div v-for="department in detail.departmentArr" :key="department?.depcode" class="showDepartemnt">
+                    <h1>{{ department.depname }}</h1>
+                    <ul>
+                        <li @click="showLogin" v-for="item in department.children" :key="item.depcode">{{ item.depname
+                            }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
 <script setup lang="ts">
 import useDetailStore from '@/store/modules/hospitalDetail';
+import useUserStore from '@/store/modules/user';
+import { ref } from 'vue';
+const userStore = useUserStore()
 const detail = useDetailStore()
+const currentIndex = ref<number>(0)
+const changeIndex = (index: number) => {
+    currentIndex.value = index
+    let allH1 = document.querySelectorAll('.department h1')
+    allH1[currentIndex.value].scrollIntoView({
+        behavior: 'smooth'
+    })
+}
+const showLogin = () => {
+    userStore.visiable = true
+}
 </script>
 
 <style scoped lang="less">
@@ -101,6 +134,76 @@ const detail = useDetailStore()
             .ruleInfo {
                 margin-top: 3px;
                 color: #7f7f7f;
+            }
+        }
+    }
+
+    .departmentContaint {
+        height: 500px;
+
+        display: flex;
+        margin-top: 20px;
+
+        .leftNav {
+            width: 80px;
+            height: 100%;
+
+            ul {
+                width: 100%;
+                height: 100%;
+                background: rgb(248, 248, 248);
+                display: flex;
+                flex-direction: column;
+
+                li {
+                    flex: 1;
+                    text-align: center;
+                    line-height: 40px;
+                    font-size: 14px;
+                    cursor: pointer;
+                }
+
+                .active {
+                    border-left: 2px solid red;
+                    color: red;
+                    background-color: white;
+                }
+            }
+        }
+
+        .department {
+            flex: 1;
+            margin-left: 20px;
+            height: 100%;
+            overflow: auto;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+
+            .showDepartemnt {
+                h1 {
+                    font-size: 14px;
+                    background-color: rgb(248, 248, 248);
+                    color: #7f7f7f;
+                }
+
+                ul {
+                    display: flex;
+                    flex-wrap: wrap;
+
+                    li {
+                        width: 33%;
+                        line-height: 30px;
+                        padding: 0;
+                        color: #7f7f7f;
+                        cursor: pointer;
+
+                        &:hover {
+                            color: skyblue;
+                        }
+                    }
+                }
             }
         }
     }
