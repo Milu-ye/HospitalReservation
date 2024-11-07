@@ -18,10 +18,10 @@
     width: 100%;
     height: 50px;
     background-color: white;
-    display: flex;
+    display: none;
     background-color: #f0f2f5;
     justify-content: center;
-    position: absolute;
+
 
     .content {
         width: 1200px;
@@ -30,6 +30,7 @@
         justify-content: space-between;
         align-items: center;
         font-size: 12px;
+
 
         .left {
             display: flex;

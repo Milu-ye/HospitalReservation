@@ -54,8 +54,9 @@
                 <div v-for="department in detail.departmentArr" :key="department?.depcode" class="showDepartemnt">
                     <h1>{{ department.depname }}</h1>
                     <ul>
-                        <li @click="showLogin" v-for="item in department.children" :key="item.depcode">{{ item.depname
-                            }}</li>
+                        <li @click="showLogin(item)" v-for="item in department.children" :key="item.depcode">{{
+                            item.depname
+                        }}</li>
                     </ul>
                 </div>
             </div>
@@ -67,7 +68,10 @@
 import useDetailStore from '@/store/modules/hospitalDetail';
 import useUserStore from '@/store/modules/user';
 import { ref } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
 const userStore = useUserStore()
+const router = useRouter()
+const route = useRoute()
 const detail = useDetailStore()
 const currentIndex = ref<number>(0)
 const changeIndex = (index: number) => {
@@ -77,8 +81,15 @@ const changeIndex = (index: number) => {
         behavior: 'smooth'
     })
 }
-const showLogin = () => {
-    userStore.visiable = true
+const showLogin = (item: any) => {
+    // userStore.visiable = true
+    router.push({
+        path: '/hospital/register_step1',
+        query: {
+            hoscode: route.query.hoscode,
+            depcode: item.depcode
+        }
+    })
 }
 </script>
 

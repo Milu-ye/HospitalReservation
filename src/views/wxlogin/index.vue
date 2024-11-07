@@ -10,9 +10,9 @@ import useUserStore from '@/store/modules/user';
 const userStore = useUserStore()
 const route = useRoute()
 localStorage.setItem('USERINFO', JSON.stringify(route.query))
-Object.assign(userStore.userInfo, route.query),
-    userStore.visiable = false
-
+Object.assign(userStore.userInfo, route.query)
+const html: HTMLElement = document.querySelector('html') as HTMLElement
+html.style.display = 'none'
 
 </script>
 

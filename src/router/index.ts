@@ -31,11 +31,54 @@ export default createRouter({
           path: 'search',
           component: () => import('@/views/hospital/search/index.vue'),
         },
+        {
+          path: 'register_step1',
+          component: () =>
+            import('@/views/hospital/register/register_step1/index.vue'),
+        },
+        {
+          path: 'register_step2',
+          name: 'register_step2',
+          component: () =>
+            import('@/views/hospital/register/register_step2/index.vue'),
+        },
       ],
     },
     {
       path: '/wxlogin',
       component: () => import('@/views/wxlogin/index.vue'),
+    },
+    {
+      path: '/user',
+      component: () => import('@/views/user/index.vue'),
+      redirect: '/user/certification',
+      children: [
+        {
+          path: 'certification',
+          name: 'certification',
+          component: () => import('@/views/user/certification/index.vue'),
+        },
+        {
+          path: 'order',
+          name: 'order',
+          component: () => import('@/views/user/order/index.vue'),
+        },
+        {
+          path: 'profile',
+          name: 'profile',
+          component: () => import('@/views/user/profile/index.vue'),
+        },
+        {
+          path: 'patient',
+          name: 'patient',
+          component: () => import('@/views/user/patient/index.vue'),
+        },
+        {
+          path: 'feedback',
+          name: 'feedback',
+          component: () => import('@/views/user/feedback/index.vue'),
+        },
+      ],
     },
     {
       path: '/',

@@ -86,3 +86,97 @@ export interface WxLogin {
 export interface WxLoginResponseData extends ResponseData {
   data: WxLogin
 }
+export interface HospitalWorkData {
+  total: number
+  bookingScheduleList: BookingScheduleList[]
+  baseMap: BaseMap
+}
+
+export interface BookingScheduleList {
+  workDate: string
+  workDateMd: string
+  dayOfWeek: string
+  docCount: number
+  reservedNumber: number
+  availableNumber: number
+  status: number
+}
+
+export interface BaseMap {
+  workDateString: string
+  releaseTime: string
+  bigname: string
+  stopTime: string
+  depname: string
+  hosname: string
+}
+
+export interface ResHospitalWorkData extends ResponseData {
+  data: HospitalWorkData
+}
+export interface Doctor {
+  id: string
+  createTime: Date
+  updateTime: Date
+  isDeleted: number
+  param: {
+    dayOfWeek: string
+    depname: string
+    hosname: string
+  }
+  hoscode: string
+  depcode: string
+  title: string
+  docname: string
+  skill: string
+  workDate: Date
+  workTime: number
+  reservedNumber: number
+  availableNumber: number
+  amount: number
+  status: number
+  hosScheduleId: string
+}
+export interface DoctorResponseData extends ResponseData {
+  data: Doctor[]
+}
+export interface User {
+  id: number
+  createTime: Date
+  updateTime: Date
+  isDeleted: number
+  param: {
+    certificatesTypeString: null
+    contactsCertificatesTypeString: null
+    cityString: null
+    fullAddress: string
+    districtString: null
+    provinceString: null
+  }
+  userId: number
+  name: string
+  certificatesType: string
+  certificatesNo: string
+  sex: number
+  birthdate: Date
+  phone: string
+  isMarry: number
+  provinceCode: null | string
+  cityCode: null | string
+  districtCode: null | string
+  address: string
+  contactsName: string
+  contactsCertificatesType: string
+  contactsCertificatesNo: string
+  contactsPhone: string
+  isInsure: number
+  cardNo: null
+  status: string
+}
+export interface UserResponseData extends ResponseData {
+  data: User[]
+}
+
+export interface DoctorInfoData extends ResponseData {
+  data: Doctor
+}

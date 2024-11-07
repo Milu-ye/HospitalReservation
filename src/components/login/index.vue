@@ -95,10 +95,22 @@
 import useUserStore from '@/store/modules/user';
 import { User } from '@element-plus/icons-vue'
 import { reqCode, reqUserLogin, reqWxLogin } from '@/api/hospital';
-import { ref, reactive, computed } from 'vue';
+import { ref, reactive, computed, watch } from 'vue';
 import { ElMessage } from 'element-plus';
 const userStore = useUserStore()
 const isPhoneLogin = ref(true)
+watch(isPhoneLogin, () => {
+    if (!isPhoneLogin.value) {
+        const timer = setInterval(() => {
+            if (localStorage.getItem('USERINFO')) {
+                userStore.userInfo = JSON.parse(localStorage.getItem('USERINFO') as string);
+                isPhoneLogin.value = true;
+                userStore.visiable = false
+
+            }
+        }, 1000)
+    }
+})
 const pastTime = ref<number>(0)
 const changeLoginMethod = async () => {
     isPhoneLogin.value = !isPhoneLogin.value

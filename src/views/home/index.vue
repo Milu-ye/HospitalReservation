@@ -11,8 +11,8 @@
                     <card class="item" v-for="(item, index) in hasHospitalArr" :hospitalInfo="item" :key="index"></card>
                 </div>
                 <el-pagination class="pagegation" v-model:current-page="pageNo" v-model:page-size="pageSize"
-                    :page-sizes="[10, 20, 30, 40]" :background="true" layout=" prev, pager, next, jumper,total"
-                    :total="total" @current-change="currentChange" />
+                    :background="true" layout=" prev, pager, next, jumper,total" :total="total"
+                    @current-change="currentChange" />
             </el-col>
             <el-col :span="4">
                 <Tip></Tip>
