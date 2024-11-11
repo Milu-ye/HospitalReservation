@@ -9,6 +9,7 @@ import ElementPlus from 'element-plus'
 import pinia from '@/store'
 import App from './App.vue'
 import router from './router'
+import './permisstion'
 const app = createApp(App)
 app.component('HospitalTop', HospitalTop)
 app.component('HospitalBottom', HospitalBottom)

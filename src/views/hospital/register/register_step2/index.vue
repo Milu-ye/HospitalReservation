@@ -5,7 +5,7 @@
             <template #header>
                 <div class="card-header">
                     <span>请选择就诊人</span>
-                    <el-button :icon="User" type="primary" size="default">添加就诊人</el-button>
+
                 </div>
             </template>
             <div class="user">

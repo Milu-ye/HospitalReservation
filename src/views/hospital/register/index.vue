@@ -82,14 +82,19 @@ const changeIndex = (index: number) => {
     })
 }
 const showLogin = (item: any) => {
-    // userStore.visiable = true
-    router.push({
-        path: '/hospital/register_step1',
-        query: {
-            hoscode: route.query.hoscode,
-            depcode: item.depcode
-        }
-    })
+    if (localStorage.getItem('USERINFO')) {
+        router.push({
+            path: '/hospital/register_step1',
+            query: {
+                hoscode: route.query.hoscode,
+                depcode: item.depcode
+            }
+        })
+
+    }
+    else {
+        userStore.visiable = true
+    }
 }
 </script>
 

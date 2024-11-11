@@ -6,7 +6,8 @@
                 <span>{{ props.user.name }}</span>
             </div>
             <div class="right">
-                <el-button circle type="primary" :icon="Edit"></el-button>
+                <el-button v-if="route.name == 'patient'" circle type="danger" :icon="Delete"></el-button>
+                <el-button @click="emits('show-form')" circle type="primary" :icon="Edit"></el-button>
             </div>
         </div>
         <div class="bottom">
@@ -23,9 +24,13 @@
 </template>
 
 <script setup lang="ts">
-import { Edit } from '@element-plus/icons-vue';
+import { Edit, Delete } from '@element-plus/icons-vue';
 import type { User } from '@/api/hospital/type';
+import { useRoute } from 'vue-router';
 const props = defineProps(['user', 'isSelect'])
+const emits = defineEmits(['show-form'])
+const route = useRoute()
+
 
 </script>
 

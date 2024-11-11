@@ -1,6 +1,5 @@
 import axios from 'axios'
 import useUserStore from '@/store/modules/user'
-import { ElMessage } from 'element-plus'
 const request = axios.create({
   timeout: 10000,
   baseURL: '/api',
@@ -17,6 +16,11 @@ request.interceptors.response.use(
     return res.data
   },
   err => {
+    //@ts-ignore
+    ElMessage({
+      type: 'error',
+      message: err,
+    })
     return Promise.reject(err)
   },
 )
